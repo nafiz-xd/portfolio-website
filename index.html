@@ -123,8 +123,8 @@
       </div>
     </div>
     <div class="stats">
-      <div class="stat"><div class="num" data-count="32">0</div><div class="lbl">Projects Built</div></div>
-      <div class="stat"><div class="num" data-count="32">0</div><div class="lbl">Live Demos</div></div>
+      <div class="stat"><div class="num" data-count="37">0</div><div class="lbl">Projects Built</div></div>
+      <div class="stat"><div class="num" data-count="37">0</div><div class="lbl">Live Demos</div></div>
       <div class="stat"><div class="num" data-count="8">0</div><div class="lbl">Tools &amp; Technologies</div></div>
     </div>
   </div>
@@ -247,7 +247,7 @@
       <div class="card">
         <span class="tag">APP</span>
         <h3>🚌 Dhaka Bus Route Finder</h3>
-        <p>A public transport app for Dhaka — plan journeys across 46 bus routes and the MRT-6 metro with transfers, fares, travel times and a live map. Bilingual (EN/বাংলা), installable PWA.</p>
+        <p>A public transport app for Dhaka — plan journeys across 227 buses and the MRT-6 metro with transfers, fares, travel times and a live map. Bilingual (EN/বাংলা), installable PWA.</p>
         <div class="links"><a href="https://nafiz-xd.github.io/bus-route-finder/" target="_blank" rel="noopener">Live Demo →</a><a href="https://github.com/nafiz-xd/bus-route-finder" target="_blank" rel="noopener">Code</a></div>
       </div>
       <div class="card">
@@ -370,6 +370,36 @@
         <p>Live air quality for Dhaka areas — a big AQI gauge that changes colour with the air, PM2.5/PM10 readings and a 7-day history strip.</p>
         <div class="links"><a href="https://nafiz-xd.github.io/dhaka-aqi-tracker/" target="_blank" rel="noopener">Live Demo →</a><a href="https://github.com/nafiz-xd/dhaka-aqi-tracker" target="_blank" rel="noopener">Code</a></div>
       </div>
+      <div class="card">
+        <span class="tag">TOOL</span>
+        <h3>🥇 Gold Price BD</h3>
+        <p>Bangladesh gold price calculator — 22/21/18 karat rates, bhori-gram-ana conversion, making charge + VAT, and a real BAJUS price-history chart.</p>
+        <div class="links"><a href="https://nafiz-xd.github.io/gold-price-bd/" target="_blank" rel="noopener">Live Demo →</a><a href="https://github.com/nafiz-xd/gold-price-bd" target="_blank" rel="noopener">Code</a></div>
+      </div>
+      <div class="card">
+        <span class="tag">TOOL</span>
+        <h3>🏦 FD &amp; DPS Calculator BD</h3>
+        <p>Bank FD/DPS calculator with real Bangladeshi bank rates — maturity values, monthly growth chart and a best-bank comparison table.</p>
+        <div class="links"><a href="https://nafiz-xd.github.io/fd-dps-calculator-bd/" target="_blank" rel="noopener">Live Demo →</a><a href="https://github.com/nafiz-xd/fd-dps-calculator-bd" target="_blank" rel="noopener">Code</a></div>
+      </div>
+      <div class="card">
+        <span class="tag">LEARNING</span>
+        <h3>🗂️ Bangla Flashcard Maker</h3>
+        <p>Build your own flashcard decks and quiz yourself — 3D flip cards, wrong cards recur until you know them, progress charts per deck.</p>
+        <div class="links"><a href="https://nafiz-xd.github.io/bangla-flashcard-maker/" target="_blank" rel="noopener">Live Demo →</a><a href="https://github.com/nafiz-xd/bangla-flashcard-maker" target="_blank" rel="noopener">Code</a></div>
+      </div>
+      <div class="card">
+        <span class="tag">APP</span>
+        <h3>🍛 Calorie Counter BD</h3>
+        <p>Bangla food calorie counter — deshi foods with real photos, daily log, goal vs actual tracking and a 7-day chart.</p>
+        <div class="links"><a href="https://nafiz-xd.github.io/calorie-counter-bd/" target="_blank" rel="noopener">Live Demo →</a><a href="https://github.com/nafiz-xd/calorie-counter-bd" target="_blank" rel="noopener">Code</a></div>
+      </div>
+      <div class="card">
+        <span class="tag">TOOL</span>
+        <h3>🚌 Bus Fare Calculator BD</h3>
+        <p>Bus fares from the real BRTA per-km rates — student half fare, city + inter-district fares, popular routes and a fare history.</p>
+        <div class="links"><a href="https://nafiz-xd.github.io/bus-fare-calculator-bd/" target="_blank" rel="noopener">Live Demo →</a><a href="https://github.com/nafiz-xd/bus-fare-calculator-bd" target="_blank" rel="noopener">Code</a></div>
+      </div>
     </div>
   </section>
 
@@ -404,8 +434,14 @@
   // Scroll reveal + counters + skill bars
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-  }, { threshold: 0.12 });
+  }, { threshold: 0 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Safety fallback: if the observer never fires (old WebView, observer failure),
+  // never leave a section invisible — reveal everything after 2s.
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el => el.classList.add('visible'));
+  }, 2000);
 
   const cio = new IntersectionObserver(entries => {
     entries.forEach(e => {
